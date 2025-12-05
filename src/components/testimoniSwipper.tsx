@@ -20,7 +20,7 @@ export default function TestimoniGrid({
           </div>
 
           {isError ? (
-            <p className='text-center'>{isError}</p>
+            <p className='text-center'>{isError ? "Tidak ada data" : ""}</p>
           ) : (
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
               {data.map((item: ITestimoniTable, index: number) => (
