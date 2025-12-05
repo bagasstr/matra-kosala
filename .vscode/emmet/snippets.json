@@ -1,0 +1,7 @@
+{
+  "jsx": {
+    "snippets": {
+      ".": "<div className={cn()}></div>"
+    }
+  }
+}
