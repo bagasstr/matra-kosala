@@ -1,4 +1,4 @@
-// import '@/app/globals.css'
+import '@/app/globals.css'
 
 import QueryProvider from '@/lib/queryProvider'
 import { Toaster } from 'sonner'

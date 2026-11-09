@@ -18,7 +18,7 @@ export default function LoginForm() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   })
   const [error, setError] = useState('')
@@ -30,7 +30,7 @@ export default function LoginForm() {
     event.preventDefault()
     setIsLoading(true)
     try {
-      const response = await fetch(`${clientEnv.BASE_URL}/auth/login`, {
+      const response = await fetch(`${clientEnv.API_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,51 +49,67 @@ export default function LoginForm() {
       }
       setIsLoading(false)
     } catch (error) {
+      console.log()
+
       setError('Terjadi kesalahan saat login.')
+      setIsLoading(false)
     }
   }
 
   return (
     <div className={cn('flex flex-col gap-6')}>
-      <Card>
-        <CardHeader>
-          <CardTitle className='text-3xl text-center font-bold'>
-            Login
+      <Card className='border border-border/70 bg-card shadow-xl rounded-2xl p-6 sm:p-8'>
+        <CardHeader className='text-center pb-6 space-y-1'>
+          <CardTitle className='text-2xl font-bold tracking-tight text-foreground'>
+            Login Admin
           </CardTitle>
+          <CardDescription className='text-sm text-muted-foreground'>
+            Masukkan kredensial Anda untuk mengakses dashboard
+          </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className='p-0'>
           <form onSubmit={handleSubmit}>
-            <div className='flex flex-col gap-6'>
+            <div className='flex flex-col gap-5'>
               <div className='grid gap-2'>
-                <Label htmlFor='username'>Username</Label>
+                <Label htmlFor='username' className='text-sm font-medium'>
+                  Email
+                </Label>
                 <Input
-                  id='username'
-                  type='test'
-                  placeholder='username'
+                  id='email'
+                  type='email'
+                  placeholder='Masukkan email'
                   required
-                  value={formData.username}
+                  value={formData.email}
                   onChange={handleChange}
+                  className='h-11 rounded-lg'
                 />
               </div>
               <div className='grid gap-2'>
-                <div className='flex items-center'>
-                  <Label htmlFor='password' className=''>
+                <div className='flex items-center justify-between'>
+                  <Label htmlFor='password' className='text-sm font-medium'>
                     Password
                   </Label>
                 </div>
                 <Input
                   id='password'
                   type='password'
+                  placeholder='Masukkan password'
                   required
                   value={formData.password}
                   onChange={handleChange}
+                  className='h-11 rounded-lg'
                 />
               </div>
-              {error && <p className='text-red-500'>{error}</p>}
+              {error && (
+                <div className='p-3 text-sm rounded-lg bg-destructive/10 text-destructive font-medium border border-destructive/20'>
+                  {error}
+                </div>
+              )}
               <Button
                 type='submit'
-                className='w-full h-12 rounded-sm ring-white ring-1 ring-inset bg-primary-content font-semibold text-md'>
-                {isLoading ? 'Loading...' : 'Login'}
+                disabled={isLoading}
+                className='w-full h-11 rounded-lg bg-primary-dark text-white hover:bg-primary-dark/90 font-semibold text-sm transition-colors mt-2'>
+                {isLoading ? 'Memproses...' : 'Login'}
               </Button>
             </div>
           </form>
