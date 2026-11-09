@@ -34,7 +34,7 @@ export default function Banner() {
           <div className='hidden md:block'>
             <h5 className='text-sm '>ISO. 9001 TAHUN 2015</h5>
           </div>
-          <div className='md:flex gap-2 hidden items-center'>
+          <div className='hidden md:flex gap-2 items-center'>
             <span className='text-xl'>15</span>
             <span className='text-sm uppercase leading-tight '>
               Tahun Pengalaman
@@ -61,23 +61,21 @@ export default function Banner() {
           <Button
             variant='outline'
             onClick={() => setIsOpen(true)}
-            className='group border cursor-pointer border-white text-white bg-transparent font-medium'
-            asChild>
-            <div className=''>
-              <Download className='mr-2 h-4 w-4 animate-bounce' />
-              company profile
-            </div>
+            className='group border cursor-pointer border-white text-white bg-transparent hover:bg-white/10 font-medium'
+          >
+            <Download className='mr-2 h-4 w-4 animate-bounce' />
+            company profile
           </Button>
 
           <Button
-            className='group bg-primary-dark text-white hover:bg-accent-light hover:text-primary-dark font-medium border hover:border-primary-dark transition-colors duration-300 border-white'
+            className='group bg-primary-dark text-white hover:bg-white hover:text-primary-dark font-medium border hover:border-primary-dark transition-colors duration-300 border-white'
             asChild>
             <Link
               href='https://wa.me/6285697093044?text=saya%20ingin%20mendapatkan%20sesi%20konsultasi%20gratis%20dengan%20tenaga%20ahli%20matra%20kosala'
               target='_blank'
               rel='noopener noreferrer'>
               konsultasi segera
-              <ArrowRight className='ml-2 h-4 w-4' />
+              <ArrowRight className='ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform' />
             </Link>
           </Button>
         </div>

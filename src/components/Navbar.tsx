@@ -53,16 +53,16 @@ export default function Navbar() {
         <ModalPenawaran Open={Open} setOpen={setOpen} submit="Coba Gratis" />
       )}
       {!hideNavbar && (
-        <header className="bg-primary-dark fixed top-0 z-50 w-screen">
-          <div className="py-4 lg:max-w-5xl mx-auto px-4 max-w-2xl">
+        <header className="bg-primary-dark/95 backdrop-blur-md fixed top-0 z-50 w-full shadow-md border-b border-white/10">
+          <div className="py-4 max-w-5xl mx-auto px-4">
             <div className="flex justify-between items-center">
-              <Link href={"/"} className="lg:w-[20%] md:w-[40%] w-[60%]">
+              <Link href={"/"} className="w-[50%] md:w-[25%] lg:w-[20%]">
                 <Image src={Logo} alt="Matra Kosala" priority />
               </Link>
 
               {/* Desktop Navigation */}
-              <div className="hidden lg:flex">
-                <div className="flex gap-x-2 items-center">
+              <div className="hidden md:flex">
+                <div className="flex gap-x-1 lg:gap-x-2 items-center text-sm lg:text-base">
                   {menuItems.map((item) => (
                     <Link
                       href={item.href}
@@ -81,7 +81,7 @@ export default function Navbar() {
               </div>
 
               {/* Desktop Consult Button */}
-              <div className="hidden lg:flex">
+              <div className="hidden md:flex">
                 <Button
                   onClick={() => setOpen(true)}
                   className="text-white bg-primary-light border hover:bg-white hover:text-primary-light"
@@ -92,7 +92,7 @@ export default function Navbar() {
               </div>
 
               {/* Mobile Menu Toggle */}
-              <div className="flex lg:hidden">
+              <div className="flex md:hidden">
                 <button
                   onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
                   className="text-2xl focus:outline-none transition-transform duration-300"
@@ -109,7 +109,7 @@ export default function Navbar() {
 
           {/* Mobile Navigation Menu */}
           <div
-            className={`lg:hidden bg-primary-dark shadow-lg border-t border-gray-200 transition-all duration-300 overflow-hidden ${
+            className={`md:hidden bg-primary-dark shadow-lg border-t border-white/10 transition-all duration-300 overflow-hidden ${
               isMobileMenuOpen
                 ? "max-h-screen opacity-100"
                 : "max-h-0 opacity-0"
@@ -130,7 +130,7 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
-              <div className="flex lg:hidden pt-4">
+              <div className="flex md:hidden pt-4">
                 <Button
                   onClick={() => setOpen(true)}
                   className="text-white bg-primary-light border hover:bg-white hover:text-primary-light"
