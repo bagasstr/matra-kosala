@@ -323,7 +323,7 @@ function MobileBenefit() {
                   <Image
                     src={layanan1}
                     fill
-                    objectFit='contain'
+                    className='object-contain'
                     alt='layanan1'
                   />
                 </div>
@@ -351,7 +351,7 @@ function MobileBenefit() {
                   <Image
                     src={layanan2}
                     fill
-                    objectFit='contain'
+                    className='object-contain'
                     alt='layanan1'
                   />
                 </div>
@@ -379,7 +379,7 @@ function MobileBenefit() {
                   <Image
                     src={layanan3}
                     fill
-                    objectFit='contain'
+                    className='object-contain'
                     alt='layanan1'
                   />
                 </div>

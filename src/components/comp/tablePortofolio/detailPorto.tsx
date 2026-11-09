@@ -75,7 +75,7 @@ export default function DetailPorto({ rowId }: { rowId: number }): JSX.Element {
                         alt={data?.data.thumbnail}
                         width={50}
                         height={50}
-                        objectFit='cover'
+                        className='object-cover'
                         quality={100}
                       />
                     </div>
@@ -93,7 +93,7 @@ export default function DetailPorto({ rowId }: { rowId: number }): JSX.Element {
                           alt={item.url}
                           width={50}
                           height={50}
-                          objectFit='cover'
+                          className='object-cover'
                           quality={100}
                         />
                       </div>

@@ -243,19 +243,30 @@ export interface ISeo {
 
 export interface ITestimoniResponse {
   success: boolean
-  page: number
-  limit: number
-  totalPage: number
-  totalItem: number
-  data: ITestimoniTable[]
+  message?: string
+  data:
+    | ITestimoniTable[]
+    | {
+        data: ITestimoniTable[]
+        total: number
+        page: number
+        limit: number
+        totalPages: number
+      }
+  page?: number
+  limit?: number
+  totalPage?: number
+  totalItem?: number
 }
 export interface ITestimoniTable {
-  id: number
+  id: string | number
   company: string
-  testi: string
+  testi?: string
+  comment?: string
   title: string
-  author: string
+  author?: string
+  writted?: string
   image: string
   createdAt: string
-  updatedAt: string
+  updatedAt: string | null
 }

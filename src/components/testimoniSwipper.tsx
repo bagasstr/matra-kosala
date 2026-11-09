@@ -20,20 +20,21 @@ export default function TestimoniGrid({
           </div>
 
           {isError ? (
-            <p className='text-center'>{isError ? "Tidak ada data" : ""}</p>
+            <p className='text-center'>{isError ? 'Tidak ada data' : ''}</p>
           ) : (
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-              {data.map((item: ITestimoniTable, index: number) => (
-                <div key={index} className='flex justify-center'>
-                  <CustomCardTesti
-                    image={item.image}
-                    name={item.author}
-                    institute={item.company}
-                    title={item.title}
-                    desc={item.testi}
-                  />
-                </div>
-              ))}
+              {Array.isArray(data) &&
+                data.map((item: ITestimoniTable, index: number) => (
+                  <div key={item.id ?? index} className='flex justify-center'>
+                    <CustomCardTesti
+                      image={item.image}
+                      name={item.author || item.writted || '-'}
+                      institute={item.company}
+                      title={item.title}
+                      desc={item.testi || item.comment || ''}
+                    />
+                  </div>
+                ))}
             </div>
           )}
         </div>
