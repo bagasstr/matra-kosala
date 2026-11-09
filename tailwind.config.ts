@@ -15,6 +15,9 @@ const config: Config = {
   },
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-poppins)", "sans-serif"],
+      },
       fontSize: {
         heading: "28px", // Ukuran font untuk heading
         paragraph: "14px", // Ukuran font untuk paragraf

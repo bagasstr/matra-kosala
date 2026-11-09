@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   let url = request.nextUrl.clone()
-  const token = request.cookies.get('authToken')?.value
+  const token = request.cookies.get('session_id')?.value
 
   // **Proteksi Semua Halaman Admin**
   if (url.pathname.startsWith('/admin/dashboard')) {
