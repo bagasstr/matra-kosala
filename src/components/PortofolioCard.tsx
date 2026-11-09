@@ -89,9 +89,8 @@ const PortofolioCard = ({
                       <Image
                         src={`${clientEnv.IMAGE_URL}/${data?.thumbnail}`}
                         alt={data.title}
-                        layout="fill"
-                        objectFit="cover"
-                        className="transition-transform duration-300"
+                        fill
+                        className="object-cover transition-transform duration-300"
                       />
                     </div>
                     <div className="flex-1">
