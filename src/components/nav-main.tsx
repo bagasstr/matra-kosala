@@ -1,84 +1,72 @@
 'use client'
 
-import { ChevronRight, type LucideIcon } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible'
 import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
 } from '@/components/ui/sidebar'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { url } from 'inspector'
+import { cn } from '@/lib/utils'
 
-export function NavMain({
-  items,
-}: {
-  items: {
-    title: string
-    url: string
-    disable?: boolean
-    icon?: LucideIcon
-    isActive?: boolean
-    items?: {
-      title: string
-      url: string
-    }[]
-  }[]
-}) {
-  const [isActiveUrl, setActiveUrl] = useState<string | null>(null)
-  const handleActive = (url: string) => {
-    setActiveUrl(url)
-    localStorage.setItem('isActiveUrl', url)
-  }
-  useEffect(() => {
-    const currentUrl = localStorage.getItem('isActiveUrl')
-    if (currentUrl) {
-      setActiveUrl(currentUrl)
-    }
-  }, [isActiveUrl])
+export type NavItem = {
+  title: string
+  url: string
+  disable?: boolean
+  icon?: LucideIcon
+}
+
+export type NavGroup = { label: string; items: NavItem[] }
+
+export function NavMain({ groups }: { groups: NavGroup[] }) {
+  const pathname = usePathname()
+
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
-      <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible
-            key={item.title}
-            asChild
-            disabled={item.disable}
-            defaultOpen={item.isActive}
-            className='group/collapsible'>
-            <SidebarMenuItem
-              className={`${isActiveUrl === item.url ? 'bg-secondary rounded-lg' : ''}`}>
-              <SidebarMenuButton
-                disabled={item.disable}
-                tooltip={item.title}
-                onClick={() => handleActive(item.url)}>
-                <Link
-                  href={item.url}
-                  prefetch={true}
-                  className='w-full flex items-center gap-x-2'>
-                  <div className=''>
-                    {item.icon && <item.icon className='size-5' />}
-                  </div>
-                  <span>{item.title}</span>
-                  <ChevronRight className='ml-auto transition-transform duration-200' />
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </Collapsible>
-        ))}
-      </SidebarMenu>
-    </SidebarGroup>
+    <>
+      {groups.map((group) => (
+        <SidebarGroup key={group.label}>
+          <SidebarGroupLabel className='text-[11px] uppercase tracking-wider'>
+            {group.label}
+          </SidebarGroupLabel>
+          <SidebarMenu>
+            {group.items.map(({ title, url, disable, icon: Icon }) => {
+              const isActive =
+                pathname === url ||
+                (url !== '/admin/dashboard' && pathname.startsWith(`${url}/`))
+              return (
+                <SidebarMenuItem key={title}>
+                  <SidebarMenuButton
+                    asChild
+                    disabled={disable}
+                    isActive={isActive}
+                    tooltip={title}
+                    className='data-[active=true]:bg-sidebar-primary data-[active=true]:font-medium data-[active=true]:text-sidebar-primary-foreground'>
+                    <Link
+                      href={url}
+                      prefetch
+                      aria-disabled={disable}
+                      className={cn(
+                        disable && 'pointer-events-none opacity-50',
+                      )}>
+                      {Icon && <Icon className='size-4' />}
+                      <span>{title}</span>
+                      {disable && (
+                        <span className='ml-auto rounded bg-sidebar-accent px-1.5 py-0.5 text-[10px]'>
+                          Soon
+                        </span>
+                      )}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )
+            })}
+          </SidebarMenu>
+        </SidebarGroup>
+      ))}
+    </>
   )
 }

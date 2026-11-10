@@ -100,3 +100,26 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+/* Tema khusus area admin (di-scope agar tidak mengubah situs publik) */
+html.admin-theme {
+  --background: 224 25% 96%;
+  --foreground: 224 30% 12%;
+  --primary: 243 75% 59%;
+  --primary-foreground: 0 0% 100%;
+  --ring: 243 75% 59%;
+  --muted: 224 20% 93%;
+  --accent: 243 80% 96%;
+  --accent-foreground: 243 75% 40%;
+  --border: 224 20% 89%;
+  --input: 224 20% 89%;
+  --radius: 0.75rem;
+  --sidebar-background: 224 40% 11%;
+  --sidebar-foreground: 220 15% 78%;
+  --sidebar-primary: 243 75% 65%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 224 30% 18%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 224 30% 18%;
+  --sidebar-ring: 243 75% 65%;
+}
